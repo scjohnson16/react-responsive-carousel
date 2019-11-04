@@ -19,7 +19,7 @@ export interface CarouselProps {
     showIndicators?: boolean;
     showThumbs?: boolean;
     infiniteLoop?: boolean;
-    selectedItem?: number;
+    initialSelectedItem?: number;
     axis?: Axis;
     onChange?: CarouselCallback;
     onClickItem?: CarouselCallback;
@@ -58,7 +58,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> {
 
 export interface ThumbsProps {
     transitionTime?: number;
-    selectedItem?: number;
+    initialSelectedItem?: number;
     axis?: Axis;
 }
 

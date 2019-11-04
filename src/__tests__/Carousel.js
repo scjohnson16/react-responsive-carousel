@@ -67,7 +67,7 @@ describe('Slider', function() {
                 showStatus: true,
                 showThumbs: true,
                 infiniteLoop: false,
-                selectedItem: 0,
+                initialSelectedItem: 0,
                 axis: 'horizontal',
                 verticalSwipe: 'standard',
                 useKeyboardArrows: false,
@@ -90,7 +90,7 @@ describe('Slider', function() {
 
         describe('Initial State', () => {
             const props = {
-                selectedItem: 0,
+                initialSelectedItem: 0,
                 hasMount: false,
             };
 
@@ -393,8 +393,16 @@ describe('Slider', function() {
         });
 
         it('should set the selectedItem from the props', () => {
-            renderDefaultComponent({ selectedItem: 3 });
+            renderDefaultComponent({ initialSelectedItem: 3 });
             expect(componentInstance.state.selectedItem).toBe(3);
+        });
+
+        it('should not move to initialSelectedItem after initialization', () => {
+            renderDefaultComponent({ initialSelectedItem: 3 });
+            expect(componentInstance.state.selectedItem).toBe(3);
+
+            component.findWhere((n) => n.node === componentInstance.itemsRef[2]).simulate('click');
+            expect(componentInstance.state.selectedItem).toBe(2);
         });
 
         it('should update the position of the Carousel if selectedItem is changed', () => {
@@ -554,7 +562,7 @@ describe('Slider', function() {
         it('should set slide position directly and trigger a reflow when doing last to first transition', () => {
             renderDefaultComponent({
                 infiniteLoop: true,
-                selectedItem: 7,
+                initialSelectedItem: 7,
             });
 
             componentInstance.setPosition = jest.genMockFunction();

@@ -58,7 +58,7 @@ class Carousel extends Component {
         showStatus: true,
         showThumbs: true,
         infiniteLoop: false,
-        selectedItem: 0,
+        initialSelectedItem: 0,
         axis: 'horizontal',
         verticalSwipe: 'standard',
         width: '100%',
@@ -92,7 +92,7 @@ class Carousel extends Component {
 
         this.state = {
             initialized: false,
-            selectedItem: props.selectedItem,
+            selectedItem: props.initialSelectedItem,
             hasMount: false,
             isMouseEntered: false,
             autoPlay: props.autoPlay,
@@ -108,11 +108,6 @@ class Carousel extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.selectedItem !== this.state.selectedItem) {
-            this.updateSizes();
-            this.moveTo(nextProps.selectedItem);
-        }
-
         if (nextProps.autoPlay !== this.state.autoPlay) {
             this.setState(
                 {
@@ -554,7 +549,7 @@ class Carousel extends Component {
     };
 
     getInitialImage = () => {
-        const selectedItem = this.props.selectedItem;
+        const selectedItem = this.props.initialSelectedItem;
         const item = this.itemsRef && this.itemsRef[selectedItem];
         const images = item && item.getElementsByTagName('img');
         return images && images[selectedItem];

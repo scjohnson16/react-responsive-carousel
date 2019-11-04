@@ -101,7 +101,11 @@ export class ExternalControlledCarousel extends Component {
                         Next
                     </button>
                 </div>
-                <Carousel selectedItem={this.state.currentSlide} onChange={this.updateCurrentSlide} {...this.props}>
+                <Carousel
+                    initialSelectedItem={this.state.currentSlide}
+                    onChange={this.updateCurrentSlide}
+                    {...this.props}
+                >
                     {baseChildren.props.children}
                 </Carousel>
             </div>
@@ -322,7 +326,7 @@ storiesOf('Carousel')
         ),
         { source: true, inline: true, propTables: false }
     )
-    .addWithInfo('initial selected', () => <Carousel selectedItem={3}>{baseChildren.props.children}</Carousel>, {
+    .addWithInfo('initial selected', () => <Carousel initialSelectedItem={3}>{baseChildren.props.children}</Carousel>, {
         source: true,
         inline: true,
         propTables: false,

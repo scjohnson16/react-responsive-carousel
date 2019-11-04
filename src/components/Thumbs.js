@@ -11,7 +11,7 @@ class Thumbs extends Component {
     static propsTypes = {
         children: PropTypes.element.isRequired,
         transitionTime: PropTypes.number,
-        selectedItem: PropTypes.number,
+        initialSelectedItem: PropTypes.number,
         thumbWidth: PropTypes.number,
         labels: PropTypes.shape({
             leftArrow: PropTypes.string,
@@ -21,7 +21,7 @@ class Thumbs extends Component {
     };
 
     static defaultProps = {
-        selectedItem: 0,
+        initialSelectedItem: 0,
         transitionTime: 350,
         axis: 'horizontal',
     };
@@ -30,7 +30,7 @@ class Thumbs extends Component {
         super(props);
 
         this.state = {
-            selectedItem: props.selectedItem,
+            selectedItem: props.initialSelectedItem,
             hasMount: false,
             firstItem: 0,
             itemSize: null,
@@ -46,12 +46,6 @@ class Thumbs extends Component {
     }
 
     componentWillReceiveProps(props, state) {
-        if (props.selectedItem !== this.state.selectedItem) {
-            this.setState({
-                selectedItem: props.selectedItem,
-                firstItem: this.getFirstItem(props.selectedItem),
-            });
-        }
         if (props.children !== this.props.children) {
             this.setState({
                 images: this.getImages(),
@@ -120,7 +114,7 @@ class Thumbs extends Component {
         this.setState((_state, props) => ({
             itemSize,
             visibleItems,
-            firstItem: showArrows ? this.getFirstItem(props.selectedItem) : 0,
+            firstItem: showArrows ? this.getFirstItem(props.initialSelectedItem) : 0,
             lastPosition,
             showArrows,
         }));

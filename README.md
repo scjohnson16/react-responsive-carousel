@@ -24,7 +24,7 @@ Powerful, lightweight and fully customizable carousel component for React apps.
 - Infinite loop
 - Horizontal or Vertical directions
 - Supports images, videos, text content or anything you want. Each direct child represents one slide!
-- Supports any flux library (use `selectedItem` prop to set from the app state, and `onChange` callback to get the new position)
+- Supports any flux library (use `initialSelectedItem` prop to set from the app state, and `onChange` callback to get the new position)
 - Show/hide anything (thumbs, indicators, arrows, status)
 
 ### Important links:
@@ -95,7 +95,8 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 | showThumbs            | `boolean`     | `true` | show thumbnails of the images |
 | thumbWidth            | `number`      | `undefined` | optionally specify pixel width (as an integer) of a thumbnail (including any padding) to avoid calculating values (helps with server-side renders or page cache issues) |
 | infiniteLoop          | `boolean`     | `false` | infinite loop sliding  |
-| selectedItem          | `number`      | `0` | selects an item though props / defines the initial selected item |
+
+| initialSelectedItem   | `number`      | `0` | defines the initial selected item |
 | axis                  | `string`      | `horizontal` | changes orientation - accepts `horizontal` and `vertical` |
 | verticalSwipe         | `string`      | `standard` | changes vertical swipe scroll direction - accepts `standard` and `natural` |
 | onChange              | `function`    | - | Fired when changing positions |
